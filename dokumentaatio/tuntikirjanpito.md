@@ -2,4 +2,4 @@
 
 ### Viikko 1 / Wireshark
 
-- 10.05.2022 | Wireshark
+- 10.05.2022 | Wireshark työkaluun tutustumista. Tutustuminen ohjelmiston toimintaan ja sen suodattimiin. 3h

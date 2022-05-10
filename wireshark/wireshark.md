@@ -30,9 +30,23 @@ wireshark c05-http-reply-r1.pcap.gz
 ### Valmiit suodattimet
 
 - Valmiisiin suodattimiin pääsee tutustumaan välilehden "Analyze" kohdasta "Display filters". Tätä kautta voi myös luoda oman suodattimen ja tallentaa sen ohjelmistoon.
-- Suodattimia vois myös käyttää suoraan ohjelmiston päänäkymän "Apply a display filter" -kohdasta. Tämä näkymä näyttääkin kätevästi suoraan monenlaisia esimerkkejä. Esimerkiksi kirjoittamalla "ip" ohjelmisto tarjoaa erilaisia vaihtoehtoja datan suodattamiseen. Yksi vaihtoehto on suodattaa dataa siten, että näkyviin jää vain esimerkiksi tietystä ip osoitteesta (source) tullut data. Tämän avulla on helppo löytää esimerkiksi laajemmasta kokonaisuudesta tietty laite, jonka lähettämää ja vastaanottamaa dataa halutaan analysoida.
+- Suodattimia vois myös käyttää suoraan ohjelmiston päänäkymän "Apply a display filter" -kohdasta. Tämä näkymä näyttääkin kätevästi suoraan monenlaisia esimerkkejä. Esimerkiksi kirjoittamalla "ip" ohjelmisto tarjoaa erilaisia vaihtoehtoja datan suodattamiseen.
+
+### Suodattimien tarkentaminen ja niiden lisäys
+
+- Yksi vaihtoehto on suodattaa dataa siten, että näkyviin jää vain esimerkiksi tietystä ip osoitteesta (source) tullut data. Tämän avulla on helppo löytää esimerkiksi laajemmasta kokonaisuudesta tietty laite, jonka lähettämää ja vastaanottamaa dataa halutaan analysoida. Tästä testiaineistosta voimme suodattaa datan siten, että näemme vain jommna kumman laitteen lähettämän datan esimerkiksi suodattimella:
 ```
-ip.addr == 192.168.0.1
+ip.src == 192.168.0.1
 ```
 
-- Samaan tapaan myös voimme suodattaa dataa jos haluamme analysoida vain tiettyyn ip-osoitteeseen lähetettyjä (destination) paketteja esimerkiksi jokin tietty internetsivun ip-osoite. Tästä suodattimesta on hyötyä jos esimerkiksi tämän kurssin tutkimuksessa yritämme analysoida jonkin samassa verkossa olevan laitteen lähettämää ja vastaanottamaa dataa.
+- Samaan tapaan myös voimme suodattaa dataa jos haluamme analysoida vain tiettyyn ip-osoitteeseen lähetettyjä (destination) paketteja esimerkiksi jokin tietty internetsivun ip-osoite. Tästä suodattimesta on hyötyä jos esimerkiksi tämän kurssin tutkimuksessa yritämme analysoida jonkin samassa verkossa olevan laitteen lähettämää ja vastaanottamaa dataa. Tästä aineistosta voimme suodattaa vain toiselle laitteelle saapuvan datan esimerkiksi suodattimella:
+```
+ip.dst == 192.168.0.1
+```
+
+- Muita valmiita vaihtoehtoja on esimerkiksi suodattaa pelkät tcp tai upd paketit. Tcp pakettien suodatusta voi myös tehostaa siten, että määrittelee vain tietyn portin. Täten voimme suodattaa aineistosta vaikka vain porttiin 80 (http) lähtevät tai sieltä saapuvat paketit.
+```
+tcp.port == 80
+```
+
+- Lisään valmiiden suodattimien listaan yllä mainitut tämän datapaketin lähettäjän ja vastaanottajan ip osoitteiden suodattamisen. Harjoituksen vuoksi käytän niissä samaa IP-osoitetta, mutta suodatan dataa erikseen ip.dst (destination) ja ip.src (source) komennoilla. Näin saan eroteltua tämä IP-osoitteen lähettämän ja vastaanottamat paketit omiin ryhmiinsä jonka avulla voin helpommin visualisoida aineistoa.
