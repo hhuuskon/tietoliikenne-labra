@@ -2,11 +2,13 @@
 
 - Tässä tehtävässä on tarkoitus tutustua Wireshark ohjelmiston toiminnallisuuksiin, sekä analysoida haluamaansa aineistoa. Pyrin tässä keskittymään suodattimien sekä datan visualisoinnin opetteluun. Näihin molempiin löytyy Wiresharkista valmiit toiminnallisuudet. Lisäksi tarkoituksena olisi luoda oma suodatin datan käsittelyä varten.
 
+## Alustavat toimenpiteet
+
 ### Wireshark asennus
 
 - Wireshark ohjelmiston voi ladata ohjelmiston [viralliselta sivustolta](www.wireshark.org/#download)
 - Wireshark oli valmiiksi asennettu käyttämälleni tietojenkäsitelytieteiden laitoksen koneelle.
-- Wireshark käynnistyy helposti asennettuna komentoriviltä komennolla:
+- Wiresharkin visuaalinen käyttöliittymä käynnistyy helposti asennettuna komentoriviltä komennolla:
 ```
 wireshark
 ```
@@ -21,4 +23,16 @@ wireshark
 wireshark c05-http-reply-r1.pcap.gz
 ```
 
+## Suodattimet
 
+- Tässä tehtävässä on tarkoitus tutustua suodattimien käyttöön ja luoda oma suodatin.
+
+### Valmiit suodattimet
+
+- Valmiisiin suodattimiin pääsee tutustumaan välilehden "Analyze" kohdasta "Display filters". Tätä kautta voi myös luoda oman suodattimen ja tallentaa sen ohjelmistoon.
+- Suodattimia vois myös käyttää suoraan ohjelmiston päänäkymän "Apply a display filter" -kohdasta. Tämä näkymä näyttääkin kätevästi suoraan monenlaisia esimerkkejä. Esimerkiksi kirjoittamalla "ip" ohjelmisto tarjoaa erilaisia vaihtoehtoja datan suodattamiseen. Yksi vaihtoehto on suodattaa dataa siten, että näkyviin jää vain esimerkiksi tietystä ip osoitteesta (source) tullut data. Tämän avulla on helppo löytää esimerkiksi laajemmasta kokonaisuudesta tietty laite, jonka lähettämää ja vastaanottamaa dataa halutaan analysoida.
+```
+ip.addr == 192.168.0.1
+```
+
+- Samaan tapaan myös voimme suodattaa dataa jos haluamme analysoida vain tiettyyn ip-osoitteeseen lähetettyjä (destination) paketteja esimerkiksi jokin tietty internetsivun ip-osoite. Tästä suodattimesta on hyötyä jos esimerkiksi tämän kurssin tutkimuksessa yritämme analysoida jonkin samassa verkossa olevan laitteen lähettämää ja vastaanottamaa dataa.
