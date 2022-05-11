@@ -61,17 +61,33 @@ tcp.port == 80
 
 - Oletuksena tässä näkymässä on visualisoitu kaikki data jota analysoitava paketti sisältää. Pystyakselille on merkitty pakettien määrä sekunneissa ja vaaka-akselille aika sekunneissa. Voimme myös klikata halamaamme kohtaa käyrästä, jolloin wireshark näyttää päänäkymässään sen kohdan jota visualisointi esittää. Tällä tavalla pääsemme tutkimaan tarkemmin grafiikassa näkyviä kiinnostavia kohtia.
 
-<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/All_packets.png" width="800">
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/All_packets.png" width="1000">
 
 ### I/O graph eri suodattimilla
 
 - Voimme nyt tarkastella dataa siten, että käytämme siihen aikaisemmin luomiamme suodattimia. Täten voimme tarkastella kuinka paljon aineistosta löytyvä IP-osoite on vastaanottanut ja lähettänyt paketteja. Alla olevassa visualisoinnissa punainen väri vastaa niiden pakettien määrää, joita IP-osoite 192.168.0.2 on lähettänyt (source) ja sininen väri vsataa pakettien määrää jota kyseinen IP-osoite on vastaanottanut (destination)
 
-<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph.png" width="800">
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph.png" width="1000">
 
 - Tässä näemme, että suodattamamme IP osoite on lähettänyt enemmän paketteja, kuin mitä se on vastaanottanut. Voimme myös tarkastella aineistoa lähempää, jolloin näemme helposti, miten käyrät seuraavat toisiansa. Lähetettyjen pakettien prosentuaalinen osuus näyttäisi olevan silmämääräisesti myös melko paljon suurempi, kuin vastaanotettujen pakettien määrä.
 
-<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph_zoom.png" width="800">
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph_zoom.png" width="1000">
 
-### 
+### Flow graph
 
+- Flow graph näkymään pääsemmä Wiresharkin välilehdeltä "Statistics" kohdasta "Flow graph" 
+- Tässä näkymässä voimme tarkastella paljon tietoliikenteen perusteet kurssilla opittuja asioita. Jos vaihdamme näkymän "Flow type" alapalkista muotoon "TCP Flows" voimme tarkastella kuinka TCP yhteys muodostetaan SYN, SYN-ACK ja ACK viesteillä. 
+- Näemme myös kohdassa "Comment" lähetettyjen segmenttien (seq=) numerointia ja vastaanottajan kuittauksia saapuneista paketeista (ack=)
+- Näemme myös kuinka yhteys puretaan lopuksi FIN ja ACK viesteillä.
+- Eri yhteydet on todella kätevästi eroteltuna valmiiksi eri väreillä joten niitä on helppo seurata.
+
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/flow_graph.png" width="1000">
+
+
+## Mitä opin -osio
+
+- Ilman aikaisempaa kokemusta tästä ohjelmistosta sanoisin, että pääsin sen käyttämiseen mukaan pintapuolisesti melko helposti. Internet on pullollaan hyviä ohjeita tämän ohjelmiston käyttöön, sekä mielenkiintoisia valmiita datapakatteja löytyi paljon. Toiminnoissa ja visualisoinnissa on paljon tietoliikenteen perusteet kurssilla opittuja asioita ja tässä onkin mahdollisuus yhdistää asiat isommaksi kokonaisuudeksi. Ohjelma vaikuttaa todella monipuoliselta ja uskonkin, että perusteiden oppiminen tällä kurssilla antaa avaimet siihen, että ohjelmistoa on helpompi käyttää myös tulevaisuudessa.
+
+## Työaikakirjanpito
+
+[Tästä pääset työaikakirjanpitoon](https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/tuntikirjanpito.md)
