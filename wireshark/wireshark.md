@@ -36,12 +36,12 @@ wireshark c05-http-reply-r1.pcap.gz
 
 - Yksi vaihtoehto on suodattaa dataa siten, että näkyviin jää vain esimerkiksi tietystä ip osoitteesta (source) tullut data. Tämän avulla on helppo löytää esimerkiksi laajemmasta kokonaisuudesta tietty laite, jonka lähettämää ja vastaanottamaa dataa halutaan analysoida. Tästä testiaineistosta voimme suodattaa datan siten, että näemme vain jommna kumman laitteen lähettämän datan esimerkiksi suodattimella:
 ```
-ip.src == 192.168.0.1
+ip.src == 192.168.0.2
 ```
 
 - Samaan tapaan myös voimme suodattaa dataa jos haluamme analysoida vain tiettyyn ip-osoitteeseen lähetettyjä (destination) paketteja esimerkiksi jokin tietty internetsivun ip-osoite. Tästä suodattimesta on hyötyä jos esimerkiksi tämän kurssin tutkimuksessa yritämme analysoida jonkin samassa verkossa olevan laitteen lähettämää ja vastaanottamaa dataa. Tästä aineistosta voimme suodattaa vain toiselle laitteelle saapuvan datan esimerkiksi suodattimella:
 ```
-ip.dst == 192.168.0.1
+ip.dst == 192.168.0.2
 ```
 
 - Muita valmiita vaihtoehtoja on esimerkiksi suodattaa pelkät tcp tai upd paketit. Tcp pakettien suodatusta voi myös tehostaa siten, että määrittelee vain tietyn portin. Täten voimme suodattaa aineistosta vaikka vain porttiin 80 (http) lähtevät tai sieltä saapuvat paketit.
@@ -50,3 +50,28 @@ tcp.port == 80
 ```
 
 - Lisään valmiiden suodattimien listaan yllä mainitut tämän datapaketin lähettäjän ja vastaanottajan ip osoitteiden suodattamisen. Harjoituksen vuoksi käytän niissä samaa IP-osoitetta, mutta suodatan dataa erikseen ip.dst (destination) ja ip.src (source) komennoilla. Näin saan eroteltua tämä IP-osoitteen lähettämän ja vastaanottamat paketit omiin ryhmiinsä jonka avulla voin helpommin visualisoida aineistoa.
+
+## Aineiston visualisointi
+
+- Tässä tehtävässä tarkoituksena on tutustua erilaisiin tapoihin visualisoida dataa.
+
+### I/O graph
+
+- Aineiston saa visualisoitua Wiresharkin välilehden "Statistics" kohdasta "I/O Graph".
+
+- Oletuksena tässä näkymässä on visualisoitu kaikki data jota analysoitava paketti sisältää. Pystyakselille on merkitty pakettien määrä sekunneissa ja vaaka-akselille aika sekunneissa. Voimme myös klikata halamaamme kohtaa käyrästä, jolloin wireshark näyttää päänäkymässään sen kohdan jota visualisointi esittää. Tällä tavalla pääsemme tutkimaan tarkemmin grafiikassa näkyviä kiinnostavia kohtia.
+
+![Visualisointi1](https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/c05-http-reply-r1-1)
+
+### I/O graph eri suodattimilla
+
+- Voimme nyt tarkastella dataa siten, että käytämme siihen aikaisemmin luomiamme suodattimia. Täten voimme tarkastella kuinka paljon aineistosta löytyvä IP-osoite on vastaanottanut ja lähettänyt paketteja. Alla olevassa visualisoinnissa punainen väri vastaa niiden pakettien määrää, joita IP-osoite 192.168.0.2 on lähettänyt (source) ja sininen väri vsataa pakettien määrää jota kyseinen IP-osoite on vastaanottanut (destination)
+
+![Visualisointi2](https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph.png | width= 300)
+
+- Tässä näemme, että suodattamamme IP osoite on lähettänyt enemmän paketteja, kuin mitä se on vastaanottanut. Voimme myös tarkastella aineistoa lähempää, jolloin näemme helposti, miten käyrät seuraavat toisiansa. Lähetettyjen pakettien prosentuaalinen osuus näyttäisi olevan silmämääräisesti myös melko paljon suurempi, kuin vastaanotettujen pakettien määrä.
+
+![Visualisointi3](https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/c05-http-reply-r1-2)
+
+### 
+
