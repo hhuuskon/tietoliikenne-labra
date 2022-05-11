@@ -67,7 +67,7 @@ tcp.port == 80
 
 - Voimme nyt tarkastella dataa siten, että käytämme siihen aikaisemmin luomiamme suodattimia. Täten voimme tarkastella kuinka paljon aineistosta löytyvä IP-osoite on vastaanottanut ja lähettänyt paketteja. Alla olevassa visualisoinnissa punainen väri vastaa niiden pakettien määrää, joita IP-osoite 192.168.0.2 on lähettänyt (source) ja sininen väri vsataa pakettien määrää jota kyseinen IP-osoite on vastaanottanut (destination)
 
-![Visualisointi2](https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph.png | width= 300)
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph.png" width="300">
 
 - Tässä näemme, että suodattamamme IP osoite on lähettänyt enemmän paketteja, kuin mitä se on vastaanottanut. Voimme myös tarkastella aineistoa lähempää, jolloin näemme helposti, miten käyrät seuraavat toisiansa. Lähetettyjen pakettien prosentuaalinen osuus näyttäisi olevan silmämääräisesti myös melko paljon suurempi, kuin vastaanotettujen pakettien määrä.
 
