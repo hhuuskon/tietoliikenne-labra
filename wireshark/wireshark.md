@@ -61,17 +61,17 @@ tcp.port == 80
 
 - Oletuksena tässä näkymässä on visualisoitu kaikki data jota analysoitava paketti sisältää. Pystyakselille on merkitty pakettien määrä sekunneissa ja vaaka-akselille aika sekunneissa. Voimme myös klikata halamaamme kohtaa käyrästä, jolloin wireshark näyttää päänäkymässään sen kohdan jota visualisointi esittää. Tällä tavalla pääsemme tutkimaan tarkemmin grafiikassa näkyviä kiinnostavia kohtia.
 
-![Visualisointi1](https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/c05-http-reply-r1-1)
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/All_packets.png" width="800">
 
 ### I/O graph eri suodattimilla
 
 - Voimme nyt tarkastella dataa siten, että käytämme siihen aikaisemmin luomiamme suodattimia. Täten voimme tarkastella kuinka paljon aineistosta löytyvä IP-osoite on vastaanottanut ja lähettänyt paketteja. Alla olevassa visualisoinnissa punainen väri vastaa niiden pakettien määrää, joita IP-osoite 192.168.0.2 on lähettänyt (source) ja sininen väri vsataa pakettien määrää jota kyseinen IP-osoite on vastaanottanut (destination)
 
-<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph.png" width="300">
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph.png" width="800">
 
 - Tässä näemme, että suodattamamme IP osoite on lähettänyt enemmän paketteja, kuin mitä se on vastaanottanut. Voimme myös tarkastella aineistoa lähempää, jolloin näemme helposti, miten käyrät seuraavat toisiansa. Lähetettyjen pakettien prosentuaalinen osuus näyttäisi olevan silmämääräisesti myös melko paljon suurempi, kuin vastaanotettujen pakettien määrä.
 
-![Visualisointi3](https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/c05-http-reply-r1-2)
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph_zoom.png" width="800">
 
 ### 
 
