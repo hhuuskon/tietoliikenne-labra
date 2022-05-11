@@ -30,26 +30,26 @@ wireshark c05-http-reply-r1.pcap.gz
 ### Valmiit suodattimet
 
 - Valmiisiin suodattimiin pääsee tutustumaan välilehden "Analyze" kohdasta "Display filters". Tätä kautta voi myös luoda oman suodattimen ja tallentaa sen ohjelmistoon.
-- Suodattimia vois myös käyttää suoraan ohjelmiston päänäkymän "Apply a display filter" -kohdasta. Tämä näkymä näyttääkin kätevästi suoraan monenlaisia esimerkkejä. Esimerkiksi kirjoittamalla "ip" ohjelmisto tarjoaa erilaisia vaihtoehtoja datan suodattamiseen.
+- Suodattimia voi myös käyttää suoraan ohjelmiston päänäkymän "Apply a display filter" -kohdasta. Tämä näkymä näyttääkin kätevästi suoraan monenlaisia esimerkkejä. Esimerkiksi kirjoittamalla "ip" ohjelmisto tarjoaa erilaisia vaihtoehtoja datan suodattamiseen.
 
 ### Suodattimien tarkentaminen ja niiden lisäys
 
-- Yksi vaihtoehto on suodattaa dataa siten, että näkyviin jää vain esimerkiksi tietystä ip osoitteesta (source) tullut data. Tämän avulla on helppo löytää esimerkiksi laajemmasta kokonaisuudesta tietty laite, jonka lähettämää ja vastaanottamaa dataa halutaan analysoida. Tästä testiaineistosta voimme suodattaa datan siten, että näemme vain jommna kumman laitteen lähettämän datan esimerkiksi suodattimella:
+- Yksi vaihtoehto on suodattaa dataa siten, että näkyviin jää vain esimerkiksi tietystä IP-osoitteesta (source) tullut data. Tämän avulla on helppo löytää esimerkiksi laajemmasta kokonaisuudesta tietty laite, jonka lähettämää ja vastaanottamaa dataa halutaan analysoida. Tästä testiaineistosta voimme suodattaa datan siten, että näemme vain toisen laitteen lähettämän datan esimerkiksi suodattimella:
 ```
 ip.src == 192.168.0.2
 ```
 
-- Samaan tapaan myös voimme suodattaa dataa jos haluamme analysoida vain tiettyyn ip-osoitteeseen lähetettyjä (destination) paketteja esimerkiksi jokin tietty internetsivun ip-osoite. Tästä suodattimesta on hyötyä jos esimerkiksi tämän kurssin tutkimuksessa yritämme analysoida jonkin samassa verkossa olevan laitteen lähettämää ja vastaanottamaa dataa. Tästä aineistosta voimme suodattaa vain toiselle laitteelle saapuvan datan esimerkiksi suodattimella:
+- Samaan tapaan myös voimme suodattaa dataa jos haluamme analysoida vain tiettyyn IP-osoitteeseen lähetettyjä (destination) paketteja esimerkiksi jokin tietty internetsivun ip-osoite. Tästä suodattimesta on hyötyä jos esimerkiksi tämän kurssin tutkimuksessa yritämme analysoida jonkin samassa verkossa olevan laitteen lähettämää ja vastaanottamaa dataa. Tästä aineistosta voimme suodattaa vain toiselle laitteelle saapuvan datan esimerkiksi suodattimella:
 ```
 ip.dst == 192.168.0.2
 ```
 
-- Muita valmiita vaihtoehtoja on esimerkiksi suodattaa pelkät tcp tai upd paketit. Tcp pakettien suodatusta voi myös tehostaa siten, että määrittelee vain tietyn portin. Täten voimme suodattaa aineistosta vaikka vain porttiin 80 (http) lähtevät tai sieltä saapuvat paketit.
+- Muita valmiita vaihtoehtoja on esimerkiksi suodattaa pelkät tcp tai upd paketit. TCP pakettien suodatusta voi myös tehostaa siten, että määrittelee vain tietyn portin. Täten voimme suodattaa aineistosta vaikka vain porttiin 80 (HTTP) lähtevät tai sieltä saapuvat paketit.
 ```
 tcp.port == 80
 ```
 
-- Lisään valmiiden suodattimien listaan yllä mainitut tämän datapaketin lähettäjän ja vastaanottajan ip osoitteiden suodattamisen. Harjoituksen vuoksi käytän niissä samaa IP-osoitetta, mutta suodatan dataa erikseen ip.dst (destination) ja ip.src (source) komennoilla. Näin saan eroteltua tämä IP-osoitteen lähettämän ja vastaanottamat paketit omiin ryhmiinsä jonka avulla voin helpommin visualisoida aineistoa.
+- Lisään valmiiden suodattimien listaan yllä mainitut tämän datapaketin lähettäjän ja vastaanottajan IP-osoitteiden suodattamisen. Harjoituksen vuoksi käytän niissä samaa IP-osoitetta, mutta suodatan dataa erikseen ip.dst (destination) ja ip.src (source) komennoilla. Näin saan eroteltua tämä IP-osoitteen lähettämän ja vastaanottamat paketit omiin ryhmiin, jonka avulla voin helpommin visualisoida aineistoa.
 
 ## Aineiston visualisointi
 
@@ -59,7 +59,7 @@ tcp.port == 80
 
 - Aineiston saa visualisoitua Wiresharkin välilehden "Statistics" kohdasta "I/O Graph".
 
-- Oletuksena tässä näkymässä on visualisoitu kaikki data jota analysoitava paketti sisältää. Pystyakselille on merkitty pakettien määrä sekunneissa ja vaaka-akselille aika sekunneissa. Voimme myös klikata halamaamme kohtaa käyrästä, jolloin wireshark näyttää päänäkymässään sen kohdan jota visualisointi esittää. Tällä tavalla pääsemme tutkimaan tarkemmin grafiikassa näkyviä kiinnostavia kohtia.
+- Oletuksena tässä näkymässä on visualisoitu kaikki data jota analysoitava paketti sisältää. Pystyakselille on merkitty pakettien määrä sekunneissa ja vaaka-akselille aika sekunneissa. Voimme myös klikata haluttua kohtaa käyrästä, jolloin wireshark näyttää päänäkymässään sen kohdan jota visualisointi esittää. Tällä tavalla pääsemme tutkimaan tarkemmin grafiikassa näkyviä kiinnostavia kohtia.
 
 <img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/All_packets.png" width="1000">
 
@@ -69,13 +69,13 @@ tcp.port == 80
 
 <img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph.png" width="1000">
 
-- Tässä näemme, että suodattamamme IP osoite on lähettänyt enemmän paketteja, kuin mitä se on vastaanottanut. Voimme myös tarkastella aineistoa lähempää, jolloin näemme helposti, miten käyrät seuraavat toisiansa. Lähetettyjen pakettien prosentuaalinen osuus näyttäisi olevan silmämääräisesti myös melko paljon suurempi, kuin vastaanotettujen pakettien määrä.
+- Tässä näemme, että suodattimessa käytetty IP-osoite on lähettänyt enemmän paketteja, kuin mitä se on vastaanottanut. Voimme myös tarkastella aineistoa lähempää, jolloin näemme helposti, miten käyrät seuraavat toisiansa. Lähetettyjen pakettien prosentuaalinen osuus näyttäisi olevan silmämääräisesti myös melko paljon suurempi, kuin vastaanotettujen pakettien määrä.
 
 <img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Filtered_IO_graph_zoom.png" width="1000">
 
 ### Flow graph
 
-- Flow graph näkymään pääsemmä Wiresharkin välilehdeltä "Statistics" kohdasta "Flow graph" 
+- Flow graph näkymään pääsemme Wiresharkin välilehdeltä "Statistics" kohdasta "Flow graph" 
 - Tässä näkymässä voimme tarkastella paljon tietoliikenteen perusteet kurssilla opittuja asioita. Jos vaihdamme näkymän "Flow type" alapalkista muotoon "TCP Flows" voimme tarkastella kuinka TCP yhteys muodostetaan SYN, SYN-ACK ja ACK viesteillä. 
 - Näemme myös kohdassa "Comment" lähetettyjen segmenttien (seq=) numerointia ja vastaanottajan kuittauksia saapuneista paketeista (ack=)
 - Näemme myös kuinka yhteys puretaan lopuksi FIN ja ACK viesteillä.
@@ -86,7 +86,7 @@ tcp.port == 80
 
 ## Mitä opin -osio
 
-- Ilman aikaisempaa kokemusta tästä ohjelmistosta sanoisin, että pääsin sen käyttämiseen mukaan pintapuolisesti melko helposti. Internet on pullollaan hyviä ohjeita tämän ohjelmiston käyttöön, sekä mielenkiintoisia valmiita datapakatteja löytyi paljon. Toiminnoissa ja visualisoinnissa on paljon tietoliikenteen perusteet kurssilla opittuja asioita ja tässä onkin mahdollisuus yhdistää asiat isommaksi kokonaisuudeksi. Ohjelma vaikuttaa todella monipuoliselta ja uskonkin, että perusteiden oppiminen tällä kurssilla antaa avaimet siihen, että ohjelmistoa on helpompi käyttää myös tulevaisuudessa.
+- Ilman aikaisempaa kokemusta tästä ohjelmistosta sanoisin, että pääsin sen käyttämiseen mukaan pintapuolisesti melko helposti. Internet on pullollaan hyviä ohjeita tämän ohjelmiston käyttöön, sekä mielenkiintoisia valmiita datapaketteja löytyi paljon. Toiminnoissa ja visualisoinnissa on paljon tietoliikenteen perusteet kurssilla opittuja asioita ja tässä onkin mahdollisuus yhdistää asiat isommaksi kokonaisuudeksi. Ohjelma vaikuttaa todella monipuoliselta ja uskonkin, että perusteiden oppiminen tällä kurssilla antaa avaimet siihen, että ohjelmistoa on helpompi käyttää myös tulevaisuudessa.
 
 ## Työaikakirjanpito
 
