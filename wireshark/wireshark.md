@@ -49,6 +49,16 @@ ip.dst == 192.168.0.2
 tcp.port == 80
 ```
 
+- Samalla tapaa voimme erotella myös datasta paketteja siten, että näemmä vain jonkun tietyn portin johon dataa on lähetetty.
+```
+tcp.dstport == 3072
+```
+
+- Näiden suodattimien lisääminen onnistuu myös helposti siten, että tutkimamme datan kohdalla painamme hiiren oikeaa näppäintä ja valitsemalla "Apply as filter" ja "Selected".
+
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/filter_selected.png" width="1000">
+
+
 - Lisään valmiiden suodattimien listaan yllä mainitut tämän datapaketin lähettäjän ja vastaanottajan IP-osoitteiden suodattamisen. Harjoituksen vuoksi käytän niissä samaa IP-osoitetta, mutta suodatan dataa erikseen ip.dst (destination) ja ip.src (source) komennoilla. Näin saan eroteltua tämä IP-osoitteen lähettämän ja vastaanottamat paketit omiin ryhmiin, jonka avulla voin helpommin visualisoida aineistoa.
 
 ## Aineiston visualisointi
