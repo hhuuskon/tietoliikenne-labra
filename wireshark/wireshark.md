@@ -83,6 +83,20 @@ tcp.port == 80
 
 <img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/flow_graph.png" width="1000">
 
+### HTTP - Packet counter
+
+- HTTP - Packet counter näkymään pääsemme Wiresharkin "Statistics" kohdsata "HTTP" ja alavalikosta "Packet counter"
+- Tässä näkymässä voimme tarkistella esimerkiksi ip.dst == 192.168.0.1 suodattimen avulla, miten tähänä IP-osoitteeseen saapuneet paketit ovat jakautuneet onnistuneisiin ja epäonnistuneisiin. Myös prosentuaalisesti tarkasteltuna mielestäni yllättävän moni paketti on jollain tavoin epäonnistunut.
+
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/Packet_counter_dst.png" width="1000">
+
+### Source and Destination Addresses
+
+- Sourse and Destination Addresses näkymään pääsemme Wiresharkin välilehdeltä "Statistics" kohdasta "IPv4 Statisctics" ja alavalikosta "Source and Destination Addresses".
+- Tämä näkymä näyttää paljon selkeämmin paketin IP-osoitteiden osuudet siitä, kuinka monta pakettia kukakin on lähettänyt ja vastaanottanut. Todella hyvä työkalu, joka ei tarvitse tämän asian selvittämiseen ylimääräisiä suodattimia.
+
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/wireshark/SADA.png" width="1000">
+
 
 ## Mitä opin -osio
 
