@@ -23,15 +23,16 @@ ssh *omakäyttäjätunnus*@svm-11.cs.helsinki.fi
 
 - Voimme nyt siirtyä seuraavaan vaiheeseen, jossa tallennamme virtuaalikoneen verkkoliikennettä tcpdump työkalulla.
 
-#### Oikean kansion valitseminen
+### Oikean kansion valitseminen
 
+- Tämä tuntuu ehkä hieman oudolta lisäykseltä dokumentointiin, mutta oli erittäin tärkeässä roolissa tässä tehtävässä. Tämä johtuu siitä, koska virtuaalikoneen käyttöoikeudet ovat rajattuja.
 - Siirrytään ensin tmp hakemistoon. Voimme varmistaa missä hakemistossa olemme komennolla: ```pwd```
 - Tällöin pitäisi näkyä, että olemme kansiorakenteessa alimmaisena, eli hakemistossa /. Jos näin ei ole niin voimme siirtyä alemmas komennolla: ```cd ..```
 - Nyt kun listaamme kaikki kansiot niin meidän pitäisi nähdä haluamamme kansio tmp. Kansioiden listaamienn tapahtuu komennolla ```ls```
 - Siirrymme tmp kansioon komennolla: ```cd tmp```
 - Nyt komennolla ```pwd``` meidän pitäisi nähdä, että olemme kansiossa /tmp.
 
-#### Liikenteen kaappaaminen tcpdump -työkalulla
+### Liikenteen kaappaaminen tcpdump -työkalulla
 
 - Tässä vaiheessa on hyvä hieman miettiä jo etukäteen, että minkälaista liikennettä meinaamme tuottaa kaapattavaksi. Ukko-laskentaklusteria saattaa käyttää useampi käyttäjä samaan aikaan, joten kaappauksen koko saattaa kasvaa nopeastikin suureksi jos jätämme sen pitkäksi aikaa käyntiin ja alamme sitten vasta miettimään miten voimme tuottaa liikennettä.
 
@@ -54,7 +55,7 @@ ping helsinki.fi
 - Jos tiedoston sammuttaminen ei onnistu niin voit komennolla ```jobs``` listata käynnissä olevat työt. Tämän jälkeen näet listan käynnissä olevista (Running) ja keskeytetyistä (Stopped) töistä. Tästä näet myös työn etupuolelta työn numeron jota käyttämällä voit tuoda työn eteen käyttäen työn numeroa komennolla ```fg %*työn numero*. Tämän jälkeen kokeile uudelleen sammuttaa työ painamalla ctrl + z.
 - Tämän jälkeen jos käytämme komentoa ```ls -la``` meidän pitäisi nähdä luomamme tiedosto, sekä se, että olemme tiedoston omistaja. En tähän valitettavasti voi lisätä havainnollistavaa kuvaa, sillä siinä ei näy muuta, kuin käyttäjätunnukset.
 
-#### Tiedoston siirtäminen omalle koneelle 
+### Tiedoston siirtäminen omalle koneelle 
 
 - Siirrämme ensin ukko-laskentaklusterilta tämän juuri luomamme .pcap tiedoston aikaisemmin käyttämällemme melkki.cs.helsinki.fi virtuaalikoneellemme. Tämä voidaan toteuttaa SCP työkalulla. Käytämme tiedon siirtämisessä komentoa:
 ```
@@ -70,7 +71,7 @@ scp *omakäyttäjätunnus*@melkki.cs.helsinki.fi:*tiedostonnimi* *polku johon ti
 ```
 - Tämän jälkeen tiedosto pitäisi löytyä määrittelemästämme polun sisältä.
 
-### Liikenteen 
+### Liikenteen analysointi
 
 
 Kun olemme tiedoston kanssa samassa hakemistossa voimme ladata juuri siirtämämme tiedoston wireshark ohjelmaan komennolla:
@@ -94,6 +95,14 @@ wireshark *tiedostonnimi*
 <img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/tietoliikenne/flow_graph_1.png" width="1000">
 
 - Yllä olevasta kuvasta huomaamme myös, että emme aloitimme liikenteen tallentamisen ensin, sillä tekemämme ```ping``` komennot näkyvät vasta ajankohdassa n.23. 
+
+## Mitä opin -osio
+
+- Tämä tehtävä oli opettavainen monellakin tapaa. SCP ja Tcpdump olivat minulle kokonaan ennestään tuntemattomia ohjelmia. Niiden käyttö oli kuitenkin melko selkeää, kun kaikkien muidenkin ohjelmien tavoin jaksoi lukea niiden manuaalit. Oli todella mielenkiintoista päästä käyttämään ukko-laskentaklusteria. Itselläni suurin ongelma oli tiedoston siirrossa virtuaalikoneelta omalle koneelle. Tähän onneksi löytyi hyvä apu ohjauksesta. Lisäksi Wiresharkin käyttö tässäkin tehtävässä tuntui nyt helpommalta, kuin sitä oltiin jo edellisessä tehtävässä jonkin aikaa pyöritelty. Graafien käyttöön toivoisin silti oppivani vielä jotain monipuolisempaa käyttöä.
+
+## Työaikakirjanpito
+
+[Tästä pääset työaikakirjanpitoon](https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/tuntikirjanpito.md)
 
 
 
