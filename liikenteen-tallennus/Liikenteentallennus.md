@@ -39,7 +39,7 @@ ssh *omakäyttäjätunnus*@svm-11.cs.helsinki.fi
 ```
 sudo tcpdump -Z *omakäyttäjätunnus* -w *omakäyttäjätunnus*.pcap &
 ```
-- Tässä komennossa ```sudo``` määrittelee sen, että käytämme tätä työkalua meille annetuilla sudo oikeuksilla. Komento ```tcpdump``` määrittää käytettävän ohjelman. ```-Z``` lippu määrittää, kuka tiedoston on luonut ja kenellä on oikeus sitä käyttää esimerkiksi tiedoston siirtämiseen myöhemmässä vaiheessa. ```-w```'lippu määrittää tiedoston nimen. Lopussa oleva & -merkki mahdollistaa sen, että tämä prosessi jää tallentamaan liikennettä taustalle ja saamme komentorivin muuhun käyttöön sen ajaksi. Näistä lipuista ja lisäominaisuuksista saat enemmän tietoa komennolla ```man tcpdump```, joka avaa kyseisen työkalun käyttöohjeen komentoriville. & -merkin käytöstä saa vastaavasti lisää tietoa komennolla: ```man bash```
+- Tässä komennossa ```sudo``` määrittelee sen, että käytämme tätä työkalua meille annetuilla sudo oikeuksilla. Komento ```tcpdump``` määrittää käytettävän ohjelman. ```-Z``` lippu määrittää, kuka tiedoston on luonut ja kenellä on oikeus sitä käyttää esimerkiksi tiedoston siirtämiseen myöhemmässä vaiheessa. ```-w``` lippu määrittää tiedoston nimen. Lopussa oleva & -merkki mahdollistaa sen, että tämä prosessi jää tallentamaan liikennettä taustalle ja saamme komentorivin muuhun käyttöön sen ajaksi. Näistä lipuista ja lisäominaisuuksista saat enemmän tietoa komennolla ```man tcpdump```, joka avaa kyseisen työkalun käyttöohjeen komentoriville. & -merkin käytöstä saa vastaavasti lisää tietoa komennolla: ```man bash```
 
 - Nyt voimme tuottaa jotain liikennettä jonka saamme mukaan tallennukseen. Itse valitsin tässä tehtävässä käyttää komentoa:
 ```
@@ -55,6 +55,46 @@ ping helsinki.fi
 - Tämän jälkeen jos käytämme komentoa ```ls -la``` meidän pitäisi nähdä luomamme tiedosto, sekä se, että olemme tiedoston omistaja. En tähän valitettavasti voi lisätä havainnollistavaa kuvaa, sillä siinä ei näy muuta, kuin käyttäjätunnukset.
 
 #### Tiedoston siirtäminen omalle koneelle 
+
+- Siirrämme ensin ukko-laskentaklusterilta tämän juuri luomamme .pcap tiedoston aikaisemmin käyttämällemme melkki.cs.helsinki.fi virtuaalikoneellemme. Tämä voidaan toteuttaa SCP työkalulla. Käytämme tiedon siirtämisessä komentoa:
+```
+scp *tiedostonnimi* *omakäyttäjätunnus*@melkki.cs.helsinki.fi:~/
+```
+- Tässä komennossa ```scp``` määrittää käytettävän ohjelman. Tämän jälkeen määrittelemme tiedoston .pcap jonka haluamme siirtää. Sen jälkeen määritämme virtuaalikoneen jolle haluamme tiedoston siirtää. Lopussa oleva : merkin jälkeen määritämme kansion johon haluamme tiedoston siirtää. Tässä tapauksessa siirrämme tiedoston omaan kotihakemistoomme käyttämällä tuota ```~/``` päätettä.
+- Nyt voimme poistua ukko-laskentaklusterilla yksinkertaisesti komennolla: ```exit```.
+- Nyt olemme palanneet melkki.cs.helsinki.fi virtuaalikoneelle jossa näemme ```ls``` komennolla juuri siirtämämme tiedoston.
+- Voimme vaihtoehtoisesti nyt avata koneellamme uuden komentorivin jolloin pääsemme käyttämään komentoja omalla paikallisella tietokoneellamme. Voimme myös poistua melkki.cs.helsinki.fi virtuaalikoneelta komennolla ```exit```.
+- Syötämme omalla koneellamme paikallisesti komennon:
+```
+scp *omakäyttäjätunnus*@melkki.cs.helsinki.fi:*tiedostonnimi* *polku johon tiedoston haluamme*
+```
+- Tämän jälkeen tiedosto pitäisi löytyä määrittelemästämme polun sisältä.
+
+### Liikenteen 
+
+
+Kun olemme tiedoston kanssa samassa hakemistossa voimme ladata juuri siirtämämme tiedoston wireshark ohjelmaan komennolla:
+```
+wireshark *tiedostonnimi*
+```
+- Voimmekin heti suodattaa nyt helposti viime tehtävässä oppimallamme tavalla ja aikaisemmin talteenotetulla IP-osoitteella vain ne paketit jotka itse teimme käyttämällä ```ping``` komentoa.
+
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/tietoliikenne/wireshark_filtered.png" width="1000">
+
+- Näemme yllä olevan kuvan alakulmasta, että olemme onnistuneet suodattamaan 1220 paketin joukosta ne 98 pakettia jotka itse teimme.
+- Tässä näkyy myös hyvin, että joka toinen paketti on ping pyyntö (request) ukko-laskentaklusterilta helsinki.fi IP-osoitteeseen ja joka toinen paketti on vastaus (reply) helsinki.fi IP-osoitteelta ukko-laskentaklusterille.
+- Näemme myös, että pakettien koko on 98 Tavua (784 bittiä). Katsoessa muista paketteja ne näyttävät kaikki olevan saman kokoisia.
+
+
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/tietoliikenne/traffic_graph_1.png" width="1000">
+
+- Yllä olevasta kuvasta näemme I/O Graph visualisoijan avulla, että tuottamamme liikenne (vihreällä) kaikesta pakettiin eksyneestä liikenteestä (mustalla) on todella vähäistä. Tämä on hyvä tiedostaa jatkossa, ettei lähellekkään kaikki kaapattu liikenne ole välttämättä sitä, mitä itse on tarkoittanut tutkittavaksi tuottaa. Tämän vuoksi suodattimien käyttö jo kaappaus vaiheessa voisi olla järkevää.
+
+
+<img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/tietoliikenne/flow_graph_1.png" width="1000">
+
+- Yllä olevasta kuvasta huomaamme myös, että emme aloitimme liikenteen tallentamisen ensin, sillä tekemämme ```ping``` komennot näkyvät vasta ajankohdassa n.23. 
+
 
 
 

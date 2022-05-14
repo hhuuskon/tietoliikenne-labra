@@ -12,5 +12,6 @@
 
 - 12.05.2022 | Tietoliikenteen kaappaustehtävän läpikäynti ohjaustilaisuudessa. Lisäksi aloitin raportin kirjoittamista kampuksella. 3h
 - 14.05.2022 | Raportin kirjoittamista, työn toistaminen ja yksityiskohtiin paneutuminen. 2h
+- 14.05.2022 | Raportin kirjoittamista datan analysoinnin osalta. 2h
 
-#### Yhteensä 5h
+#### Yhteensä 7h
