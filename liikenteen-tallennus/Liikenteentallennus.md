@@ -4,7 +4,7 @@
 
 ### Yhteyden muodostaminen ukko-laskentaklusterille
 
-- Emme voi suodaan omalta koneeltamme ottaa yhteyttä ukko-laskentaklusteriin, joten meidän täytyy ensin ottaa SSH yhtyes laitoksen virtuaalikoneelle. Käytän tässä esimerkissä itselleni tutuksi tullutta melkki.cs.helsinki.fi virtuaalikonetta. Tämä tapahtuu komentorivin komennolla:
+- Emme voi suoraan omalta koneeltamme ottaa yhteyttä ukko-laskentaklusteriin, joten meidän täytyy ensin ottaa SSH yhteys laitoksen virtuaalikoneelle. Käytän tässä esimerkissä itselleni tutuksi tullutta melkki.cs.helsinki.fi virtuaalikonetta. Tämä tapahtuu komentorivin komennolla:
 ```
 ssh *omakäyttäjätunnus*@melkki.cs.helsinki.fi
 ```
@@ -28,8 +28,8 @@ ssh *omakäyttäjätunnus*@svm-11.cs.helsinki.fi
 - Tämä tuntuu ehkä hieman oudolta lisäykseltä dokumentointiin, mutta oli erittäin tärkeässä roolissa tässä tehtävässä. Tämä johtuu siitä, koska virtuaalikoneen käyttöoikeudet ovat rajattuja.
 - Siirrytään ensin tmp hakemistoon. Voimme varmistaa missä hakemistossa olemme komennolla: ```pwd```
 - Tällöin pitäisi näkyä, että olemme kansiorakenteessa alimmaisena, eli hakemistossa /. Jos näin ei ole niin voimme siirtyä alemmas komennolla: ```cd ..```
-- Nyt kun listaamme kaikki kansiot niin meidän pitäisi nähdä haluamamme kansio tmp. Kansioiden listaamienn tapahtuu komennolla ```ls```
-- Siirrymme tmp kansioon komennolla: ```cd tmp```
+- Nyt kun listaamme kaikki kansiot niin meidän pitäisi nähdä haluamamme kansio /tmp. Kansioiden listaaminen tapahtuu komennolla ```ls```
+- Siirrymme /tmp kansioon komennolla: ```cd tmp```
 - Nyt komennolla ```pwd``` meidän pitäisi nähdä, että olemme kansiossa /tmp.
 
 ### Liikenteen kaappaaminen tcpdump -työkalulla
@@ -46,13 +46,13 @@ sudo tcpdump -Z *omakäyttäjätunnus* -w *omakäyttäjätunnus*.pcap &
 ```
 ping helsinki.fi
 ```
-- Otin talteen syötteet, jotten niiden löytäminen olisi helpompaa myöhemmässä vaiheessa kaiken muun liikenteen joukosta. Syöte näytti seuraavanlaiselta.
+- Otin talteen syötteet, jotta niiden löytäminen olisi helpompaa myöhemmässä vaiheessa IP-osoitteen perusteella kaiken muun liikenteen joukosta. Syöte näytti seuraavanlaiselta.
 
 <img src="https://github.com/hhuuskon/tietoliikenne-labra/blob/main/dokumentaatio/kuvat/tietoliikenne/ping_helsinki.png" width="1000">
 
 - Voimme sammuttaa ```ping``` työkalun painamalla ctrl + z, kun olemme mielestämme tuottanut riittävän määrän liikennettä.
 - Voimme sammutta tcpdump työkalun palaamalla siihen komentorivillä komennolla: ```fg``` ja painamalla ctrl + z.
-- Jos tiedoston sammuttaminen ei onnistu niin voit komennolla ```jobs``` listata käynnissä olevat työt. Tämän jälkeen näet listan käynnissä olevista (Running) ja keskeytetyistä (Stopped) töistä. Tästä näet myös työn etupuolelta työn numeron jota käyttämällä voit tuoda työn eteen käyttäen työn numeroa komennolla ```fg %*työn numero*. Tämän jälkeen kokeile uudelleen sammuttaa työ painamalla ctrl + z.
+- Jos tiedoston sammuttaminen ei onnistu niin voit komennolla ```jobs``` listata käynnissä olevat työt. Tämän jälkeen näet listan käynnissä olevista (Running) ja keskeytetyistä (Stopped) töistä. Tästä näet myös työn etupuolelta työn numeron jota käyttämällä voit tuoda työn eteen käyttäen työn numeroa komennolla ```fg %*työn numero*```. Tämän jälkeen kokeile uudelleen sammuttaa työ painamalla ctrl + z.
 - Tämän jälkeen jos käytämme komentoa ```ls -la``` meidän pitäisi nähdä luomamme tiedosto, sekä se, että olemme tiedoston omistaja. En tähän valitettavasti voi lisätä havainnollistavaa kuvaa, sillä siinä ei näy muuta, kuin käyttäjätunnukset.
 
 ### Tiedoston siirtäminen omalle koneelle 
@@ -62,7 +62,7 @@ ping helsinki.fi
 scp *tiedostonnimi* *omakäyttäjätunnus*@melkki.cs.helsinki.fi:~/
 ```
 - Tässä komennossa ```scp``` määrittää käytettävän ohjelman. Tämän jälkeen määrittelemme tiedoston .pcap jonka haluamme siirtää. Sen jälkeen määritämme virtuaalikoneen jolle haluamme tiedoston siirtää. Lopussa oleva : merkin jälkeen määritämme kansion johon haluamme tiedoston siirtää. Tässä tapauksessa siirrämme tiedoston omaan kotihakemistoomme käyttämällä tuota ```~/``` päätettä.
-- Nyt voimme poistua ukko-laskentaklusterilla yksinkertaisesti komennolla: ```exit```.
+- Nyt voimme poistua ukko-laskentaklusterilta yksinkertaisesti komennolla: ```exit```.
 - Nyt olemme palanneet melkki.cs.helsinki.fi virtuaalikoneelle jossa näemme ```ls``` komennolla juuri siirtämämme tiedoston.
 - Voimme vaihtoehtoisesti nyt avata koneellamme uuden komentorivin jolloin pääsemme käyttämään komentoja omalla paikallisella tietokoneellamme. Voimme myös poistua melkki.cs.helsinki.fi virtuaalikoneelta komennolla ```exit```.
 - Syötämme omalla koneellamme paikallisesti komennon:
