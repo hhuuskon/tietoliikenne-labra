@@ -5,7 +5,7 @@ sequenceDiagram
 	participant Päätelaite
 	participant Tukiasema
 	Päätelaite->>Tukiasema: Kyselykehys
-	Tukiasema -->>Päätelaite: Probe response
+	Tukiasema -->>Päätelaite: Vastaus
 	Päätelaite->>Tukiasema: Kiinnittymispyyntö
 	Päätelaite->Tukiasema: Sopivat yhdistämisen loppuun
 
