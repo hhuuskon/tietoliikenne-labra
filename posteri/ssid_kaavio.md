@@ -1,3 +1,5 @@
+## Kaavio
+
 ```mermaid
 sequenceDiagram
 	participant Päätelaite
@@ -8,4 +10,6 @@ sequenceDiagram
 	Päätelaite->Tukiasema: Sopivat yhdistämisen loppuun
 
 ```
+
+## Kaavio
 
